@@ -1,5 +1,7 @@
-name: dev2
-description: Development 2 environment project
-sourceRepos: 'https://github.com/dev2-repo.git'
-namespace: 'dev2'
-server: 'https://dev2-server.com'
+{
+"name": "dev2",
+"description": "Development 2 environment project",
+"sourceRepos": "https://github.com/dev2-repo.git",
+"namespace": "dev2",
+"server": "https://dev2-server.com"
+}
