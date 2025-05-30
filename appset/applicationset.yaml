@@ -8,7 +8,7 @@ spec:
     - git:
         repoURL: https://github.com/sandeep-sm-ic/test-argocd.git
         revision: HEAD
-        directories:
+        files:
           - path: permissions/**/config.yaml
   template:
     metadata:
@@ -26,19 +26,19 @@ spec:
               patch: |
                 - op: replace
                   path: /metadata/name
-                  value: {{name}}
+                  value: {{.name}}
                 - op: replace
                   path: /spec/description
-                  value: {{description}}
+                  value: {{.description}}
                 - op: replace
                   path: /spec/sourceRepos/0
-                  value: {{sourceRepos}}
+                  value: {{.sourceRepos}}
                 - op: replace
                   path: /spec/destinations/0/namespace
-                  value: {{namespace}}
+                  value: {{.namespace}}
                 - op: replace
                   path: /spec/destinations/0/server
-                  value: {{server}}
+                  value: {{.server}}
 
       destination:
         server: https://kubernetes.default.svc
