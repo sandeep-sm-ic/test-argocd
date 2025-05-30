@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appprojects-generator
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/sandeep-sm-ic/test-argocd.git
+        revision: HEAD
+        directories:
+          - path: perms/*
+  template:
+    metadata:
+      name: '{{name}}-appproject'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/sandeep-sm-ic/test-argocd.git
+        targetRevision: HEAD
+        path: base
+        kustomize:
+          patches:
+            - target:
+                kind: AppProject
+              patch: |
+                - op: replace
+                  path: /metadata/name
+                  value: {{name}}
+                - op: replace
+                  path: /spec/description
+                  value: {{description}}
+                - op: replace
+                  path: /spec/sourceRepos/0
+                  value: {{sourceRepos}}
+                - op: replace
+                  path: /spec/destinations/0/namespace
+                  value: {{namespace}}
+                - op: replace
+                  path: /spec/destinations/0/server
+                  value: {{server}}
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
