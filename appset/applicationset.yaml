@@ -4,17 +4,19 @@ metadata:
   name: appprojects-generator
   namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
         repoURL: https://github.com/sandeep-sm-ic/test-argocd.git
         revision: HEAD
         files:
-          - path: permissions/**/config.yaml
+          - path: "permissions/**/config.json"
   template:
     metadata:
       name: '{{.name}}-appproject'
     spec:
-      project: default
+      project: paas
       source:
         repoURL: https://github.com/sandeep-sm-ic/test-argocd.git
         targetRevision: HEAD
