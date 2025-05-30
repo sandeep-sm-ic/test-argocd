@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/sandeep-sm-ic/test-argocd.git
         revision: HEAD
         directories:
-          - path: perms/*
+          - path: permissions/*
   template:
     metadata:
       name: '{{name}}-appproject'
