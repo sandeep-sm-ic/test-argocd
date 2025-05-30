@@ -1,0 +1,5 @@
+name: dev1
+description: Development environment project
+sourceRepos: 'https://github.com/dev1-repo.git'
+namespace: 'dev1'
+server: 'https://dev-server.com'
