@@ -12,7 +12,7 @@ spec:
           - path: permissions/**/config.yaml
   template:
     metadata:
-      name: '{{name}}-appproject'
+      name: '{{.path.basenameNormalized}}-appproject'
     spec:
       project: default
       source:
