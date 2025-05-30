@@ -32,10 +32,6 @@ spec:
                 - op: replace
                   path: /spec/description
                   value: {{.description}}
-                - op: add
-                  path: /spec/sourceRepos
-                  value: {{.sourceRepos}}
-
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
